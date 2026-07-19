@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibzo Technologies | We Build Digital Solutions. We Teach the Future.</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Glow Effect Backdrops -->
+    <div class="glow-bg glow-blue"></div>
+    <div class="glow-bg glow-purple"></div>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <span class="logo-v">V</span>
+                <div class="logo-text">
+                    <span class="logo-title">VIBZO</span>
+                    <span class="logo-subtitle">TECHNOLOGIES</span>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="nav-item active">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="#services" class="dropdown-trigger">Services <i data-lucide="chevron-down" class="dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#services">Website Development</a>
+                        <a href="#services">Mobile App Development</a>
+                        <a href="#services">Custom Software Development</a>
+                        <a href="#services">Web App Development</a>
+                        <a href="#services">Maintenance &amp; Support</a>
+                    </div>
+                </div>
+                <a href="#courses" class="nav-item">Courses</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#why-choose" class="nav-item">About Us</a>
+                <a href="#" class="nav-item" onclick="event.preventDefault(); openModal('contactModal')">Contact Us</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="tel:+916379474460" class="phone-link">
+                    <i data-lucide="phone" class="phone-icon"></i>
+                    <span>+91 63794 74460</span>
+                </a>
+                <button type="button" class="btn btn-primary" onclick="openModal('quoteModal')">Get a Free Quote</button>
+                <!-- Hamburger menu for mobile -->
+                <button type="button" class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <i data-lucide="menu" id="menu-btn-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#" onclick="toggleMobileMenu()">Home</a>
+        <a href="#services" onclick="toggleMobileMenu()">Services</a>
+        <a href="#courses" onclick="toggleMobileMenu()">Courses</a>
+        <a href="#projects" onclick="toggleMobileMenu()">Projects</a>
+        <a href="#why-choose" onclick="toggleMobileMenu()">About Us</a>
+        <a href="#" onclick="event.preventDefault(); toggleMobileMenu(); openModal('contactModal')">Contact Us</a>
+        <a href="tel:+916379474460" class="mobile-phone-link">
+            <i data-lucide="phone"></i> +91 63794 74460
+        </a>
+        <button type="button" class="btn btn-primary w-full" onclick="toggleMobileMenu(); openModal('quoteModal')">Get a Free Quote</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
+        <div class="hero-bg-layer" id="heroBg" style="background-image: url('{{ url_for('static', filename='images/1.jpg') }}');"></div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span class="tag-dot"></span> SOFTWARE SOLUTIONS &amp; TRAINING
+                </div>
+                <h1 class="hero-title">
+                    We Build <span class="text-gradient-orange">Digital Solutions.</span><br>
+                    We Teach <span class="text-gradient-yellow">the Future.</span>
+                </h1>
+                <p class="hero-description">
+                    Vibzo Technologies provides cutting-edge software solutions for businesses and practical industry-focused training for students &amp; professionals.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary btn-lg">Explore Services <i data-lucide="arrow-right" class="btn-arrow"></i></a>
+                    <a href="#courses" class="btn btn-outline btn-lg">Explore Courses <i data-lucide="arrow-right" class="btn-arrow"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual-placeholder"></div>
+        </div>
+    </section>
+
+    <!-- Main Solutions & Courses Section -->
+    <section class="solutions-courses-section">
+        <div class="container grid-container">
+            
+            <!-- SOFTWARE SOLUTIONS COMPONENT -->
+            <div class="solutions-column" id="services">
+                <div class="section-header">
+                    <span class="section-tag text-purple">SOFTWARE SOLUTIONS</span>
+                    <h2 class="section-title">We Build. You Grow.</h2>
+                </div>
+                
+                <div class="cards-list">
+                    <!-- Website Development -->
+                    <div class="card service-card card-purple" onclick="openQuoteWithService('Website Development')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="globe"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Website Development</h3>
+                            <p class="card-text">Modern, responsive and SEO-friendly websites that represent your brand perfectly.</p>
+                        </div>
+                    </div>
+
+                    <!-- Mobile App Development -->
+                    <div class="card service-card card-blue" onclick="openQuoteWithService('Mobile App Development')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="smartphone"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Mobile App Development</h3>
+                            <p class="card-text">Android &amp; iOS apps that deliver smooth performance and great user experience.</p>
+                        </div>
+                    </div>
+
+                    <!-- Custom Software Development -->
+                    <div class="card service-card card-green" onclick="openQuoteWithService('Custom Software Development')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="code"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Custom Software Development</h3>
+                            <p class="card-text">Powerful, scalable and secure software tailored to your business needs.</p>
+                        </div>
+                    </div>
+
+                    <!-- Web App Development -->
+                    <div class="card service-card card-orange" onclick="openQuoteWithService('Web App Development')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="cloud"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Web App Development</h3>
+                            <p class="card-text">Fast, secure and scalable web applications for your business operations.</p>
+                        </div>
+                    </div>
+
+                    <!-- Maintenance & Support -->
+                    <div class="card service-card card-pink" onclick="openQuoteWithService('Maintenance &amp; Support')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="settings"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Maintenance &amp; Support</h3>
+                            <p class="card-text">Ongoing support and maintenance to keep your digital products running perfectly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-benefits Row -->
+                <div class="sub-benefits-grid">
+                    <div class="sub-benefit-item">
+                        <i data-lucide="shield-check" class="benefit-icon"></i>
+                        <div>
+                            <h4>Quality Assurance</h4>
+                            <p>Bug-free &amp; reliable solutions</p>
+                        </div>
+                    </div>
+                    <div class="sub-benefit-item">
+                        <i data-lucide="clock" class="benefit-icon"></i>
+                        <div>
+                            <h4>On-Time Delivery</h4>
+                            <p>We value your time</p>
+                        </div>
+                    </div>
+                    <div class="sub-benefit-item">
+                        <i data-lucide="tag" class="benefit-icon"></i>
+                        <div>
+                            <h4>Affordable Pricing</h4>
+                            <p>Best value for your investment</p>
+                        </div>
+                    </div>
+                    <div class="sub-benefit-item">
+                        <i data-lucide="smile" class="benefit-icon"></i>
+                        <div>
+                            <h4>Client Satisfaction</h4>
+                            <p>We build long-term relationships</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRAINING & COURSES COMPONENT -->
+            <div class="courses-column" id="courses">
+                <div class="section-header">
+                    <span class="section-tag text-blue">TRAINING &amp; COURSES</span>
+                    <h2 class="section-title">We Teach. You Build.</h2>
+                </div>
+                
+                <div class="cards-list">
+                    <!-- Full Stack Web Development -->
+                    <div class="card course-card card-blue" onclick="openCourseWithName('Full Stack Web Development')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="terminal"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Full Stack Web Development</h3>
+                            <p class="card-text">Learn MERN stack from scratch and build real-world projects.</p>
+                        </div>
+                    </div>
+
+                    <!-- Full Stack App Development -->
+                    <div class="card course-card card-purple" onclick="openCourseWithName('Full Stack App Development')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="smartphone"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Full Stack App Development</h3>
+                            <p class="card-text">Build complete Android &amp; iOS apps with modern technologies.</p>
+                        </div>
+                    </div>
+
+                    <!-- UI/UX Design -->
+                    <div class="card course-card card-pink" onclick="openCourseWithName('UI/UX Design')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="palette"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">UI/UX Design</h3>
+                            <p class="card-text">Design beautiful &amp; user-friendly interfaces and amazing user experiences.</p>
+                        </div>
+                    </div>
+
+                    <!-- Machine Learning -->
+                    <div class="card course-card card-green" onclick="openCourseWithName('Machine Learning')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Machine Learning</h3>
+                            <p class="card-text">Learn ML algorithms and build intelligent applications.</p>
+                        </div>
+                    </div>
+
+                    <!-- Deep Learning & Gen AI -->
+                    <div class="card course-card card-orange" onclick="openCourseWithName('Deep Learning &amp; Gen AI')">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Deep Learning &amp; Gen AI</h3>
+                            <p class="card-text">Explore Deep Learning and Generative AI models &amp; applications.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sub-benefits Row -->
+                <div class="sub-benefits-grid">
+                    <div class="sub-benefit-item">
+                        <i data-lucide="monitor" class="benefit-icon"></i>
+                        <div>
+                            <h4>Online &amp; Offline</h4>
+                            <p>Classes flexible to your schedule</p>
+                        </div>
+                    </div>
+                    <div class="sub-benefit-item">
+                        <i data-lucide="award" class="benefit-icon"></i>
+                        <div>
+                            <h4>Certificate</h4>
+                            <p>Industry recognized certificate</p>
+                        </div>
+                    </div>
+                    <div class="sub-benefit-item">
+                        <i data-lucide="book-open" class="benefit-icon"></i>
+                        <div>
+                            <h4>Practical Learning</h4>
+                            <p>Hands-on project experience</p>
+                        </div>
+                    </div>
+                    <div class="sub-benefit-item">
+                        <i data-lucide="users" class="benefit-icon"></i>
+                        <div>
+                            <h4>Better Understanding</h4>
+                            <p>and Individual support</p>
+                        </div>
+                    </div>
+                    <div class="sub-benefit-item">
+                        <i data-lucide="check-circle" class="benefit-icon"></i>
+                        <div>
+                            <h4>Complete Project</h4>
+                            <p>Done by every student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why Choose Us & Statistics Section -->
+    <section class="why-choose-section" id="why-choose">
+        <div class="container why-container">
+            <div class="why-content">
+                <h2 class="why-title">Why Choose Vibzo Technologies?</h2>
+                <ul class="why-bullets">
+                    <li>
+                        <div class="bullet-check"><i data-lucide="check"></i></div>
+                        <span>Industry-focused curriculum &amp; real-world projects</span>
+                    </li>
+                    <li>
+                        <div class="bullet-check"><i data-lucide="check"></i></div>
+                        <span>Experienced mentors with practical knowledge</span>
+                    </li>
+                    <li>
+                        <div class="bullet-check"><i data-lucide="check"></i></div>
+                        <span>Small batch size for better understanding</span>
+                    </li>
+                    <li>
+                        <div class="bullet-check"><i data-lucide="check"></i></div>
+                        <span>Hands-on training with live projects</span>
+                    </li>
+                    <li>
+                        <div class="bullet-check"><i data-lucide="check"></i></div>
+                        <span>Certificate provided after course completion</span>
+                    </li>
+                    <li>
+                        <div class="bullet-check"><i data-lucide="check"></i></div>
+                        <span>Online &amp; Offline classes available</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="stats-panel">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <span class="stat-num" data-target="50">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <p class="stat-label">Projects Delivered</p>
+                        <i data-lucide="briefcase" class="stat-bg-icon"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <span class="stat-num" data-target="30">0</span><span class="stat-plus">+</span>
+                        </div>
+                        <p class="stat-label">Happy Clients</p>
+                        <i data-lucide="smile" class="stat-bg-icon"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <span class="stat-num" data-target="100">0</span><span class="stat-plus">%</span>
+                        </div>
+                        <p class="stat-label">Practical Learning</p>
+                        <i data-lucide="graduation-cap" class="stat-bg-icon"></i>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">
+                            <span class="stat-label-large">Better</span>
+                        </div>
+                        <p class="stat-label">Understanding Assured</p>
+                        <i data-lucide="thumbs-up" class="stat-bg-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Call to Action Box Inside Stats Section -->
+                <div class="cta-box" id="projects">
+                    <div class="cta-text">
+                        <h3>Let's Build Something Amazing Together</h3>
+                        <p>Have a project in mind or want to learn a new skill? We are here to help you achieve your goals.</p>
+                    </div>
+                    <div class="cta-actions">
+                        <button type="button" class="btn btn-primary" onclick="openModal('projectModal')">Start a Project</button>
+                        <button type="button" class="btn btn-outline" onclick="openModal('courseModal')">Join a Course</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies We Work With -->
+    <section class="tech-stack-section">
+        <div class="container">
+            <span class="tech-tag">TECHNOLOGIES WE WORK WITH</span>
+            <div class="tech-slider">
+                <div class="tech-track">
+                    <!-- Tech Items -->
+                    <div class="tech-item"><i data-lucide="atom" class="tech-logo text-blue"></i><span>React</span></div>
+                    <div class="tech-item"><i data-lucide="triangle" class="tech-logo text-white"></i><span>Next.js</span></div>
+                    <div class="tech-item"><i data-lucide="server" class="tech-logo text-green"></i><span>Node.js</span></div>
+                    <div class="tech-item"><i data-lucide="cpu" class="tech-logo text-purple"></i><span>Express.js</span></div>
+                    <div class="tech-item"><i data-lucide="database" class="tech-logo text-green"></i><span>MongoDB</span></div>
+                    <div class="tech-item"><i data-lucide="database" class="tech-logo text-blue"></i><span>MySQL</span></div>
+                    <div class="tech-item"><i data-lucide="tablet" class="tech-logo text-blue"></i><span>Flutter</span></div>
+                    <div class="tech-item"><i data-lucide="flame" class="tech-logo text-orange"></i><span>Firebase</span></div>
+                    <div class="tech-item"><i data-lucide="binary" class="tech-logo text-yellow"></i><span>Python</span></div>
+                    <div class="tech-item"><i data-lucide="network" class="tech-logo text-orange"></i><span>TensorFlow</span></div>
+                    <div class="tech-item"><i data-lucide="bot" class="tech-logo text-green"></i><span>OpenAI</span></div>
+                    <!-- Duplicate for infinite scroll animation -->
+                    <div class="tech-item"><i data-lucide="atom" class="tech-logo text-blue"></i><span>React</span></div>
+                    <div class="tech-item"><i data-lucide="triangle" class="tech-logo text-white"></i><span>Next.js</span></div>
+                    <div class="tech-item"><i data-lucide="server" class="tech-logo text-green"></i><span>Node.js</span></div>
+                    <div class="tech-item"><i data-lucide="cpu" class="tech-logo text-purple"></i><span>Express.js</span></div>
+                    <div class="tech-item"><i data-lucide="database" class="tech-logo text-green"></i><span>MongoDB</span></div>
+                    <div class="tech-item"><i data-lucide="database" class="tech-logo text-blue"></i><span>MySQL</span></div>
+                    <div class="tech-item"><i data-lucide="tablet" class="tech-logo text-blue"></i><span>Flutter</span></div>
+                    <div class="tech-item"><i data-lucide="flame" class="tech-logo text-orange"></i><span>Firebase</span></div>
+                    <div class="tech-item"><i data-lucide="binary" class="tech-logo text-yellow"></i><span>Python</span></div>
+                    <div class="tech-item"><i data-lucide="network" class="tech-logo text-orange"></i><span>TensorFlow</span></div>
+                    <div class="tech-item"><i data-lucide="bot" class="tech-logo text-green"></i><span>OpenAI</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="/" class="logo">
+                    <span class="logo-v">V</span>
+                    <div class="logo-text">
+                        <span class="logo-title">VIBZO</span>
+                        <span class="logo-subtitle">TECHNOLOGIES</span>
+                    </div>
+                </a>
+                <p>We build digital products, train engineers, and design systems for tomorrow.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#">Home</a>
+                <a href="#services">Services</a>
+                <a href="#courses">Courses</a>
+                <a href="#" onclick="event.preventDefault(); openModal('contactModal')">Contact Us</a>
+                <a href="/admin" target="_blank" class="text-orange">Admin Dashboard</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Reach Us</h4>
+                <p><i data-lucide="phone"></i> +91 63794 74460</p>
+                <p><i data-lucide="mail"></i> vibzotech@gmail.com</p>
+                <p><i data-lucide="map-pin"></i> Kumbakonam, Thanjavur DT, Tamil Nadu</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Vibzo Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Get a Free Quote Modal -->
+    <div class="modal-overlay" id="quoteModal">
+        <div class="modal">
+            <button type="button" class="modal-close" onclick="closeModal('quoteModal')" aria-label="Close"><i data-lucide="x"></i></button>
+            <h2 class="modal-title">Get a Free Quote</h2>
+            <p class="modal-subtitle">Tell us about your project requirements and we will get back to you with details.</p>
+            <form id="quoteForm" onsubmit="submitForm(event, '/api/quote', 'quoteForm', 'quoteModal')">
+                <div class="form-group">
+                    <label for="quoteName">Full Name *</label>
+                    <input type="text" id="quoteName" name="name" required placeholder="e.g. John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="quoteEmail">Email Address *</label>
+                    <input type="email" id="quoteEmail" name="email" required placeholder="e.g. john@company.com">
+                </div>
+                <div class="form-group">
+                    <label for="quotePhone">Phone Number</label>
+                    <input type="tel" id="quotePhone" name="phone" placeholder="e.g. +91 98765 43210">
+                </div>
+                <div class="form-group">
+                    <label for="quoteService">Select Service *</label>
+                    <select id="quoteService" name="service" required>
+                        <option value="">Select a service...</option>
+                        <option value="Website Development">Website Development</option>
+                        <option value="Mobile App Development">Mobile App Development</option>
+                        <option value="Custom Software Development">Custom Software Development</option>
+                        <option value="Web App Development">Web App Development</option>
+                        <option value="Maintenance &amp; Support">Maintenance &amp; Support</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quoteBudget">Estimated Budget (₹)</label>
+                    <input type="text" id="quoteBudget" name="budget" placeholder="e.g. ₹10,000 - ₹20,000">
+                </div>
+                <div class="form-group">
+                    <label for="quoteMessage">Project Details / Message</label>
+                    <textarea id="quoteMessage" name="message" rows="4" placeholder="Briefly describe what you'd like to build..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Start a Project Modal -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal">
+            <button type="button" class="modal-close" onclick="closeModal('projectModal')" aria-label="Close"><i data-lucide="x"></i></button>
+            <h2 class="modal-title">Start a Project</h2>
+            <p class="modal-subtitle">Ready to bring your idea to life? Fill in the details below to launch.</p>
+            <form id="projectForm" onsubmit="submitForm(event, '/api/project', 'projectForm', 'projectModal')">
+                <div class="form-group">
+                    <label for="projectName">Full Name *</label>
+                    <input type="text" id="projectName" name="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="projectEmail">Email Address *</label>
+                    <input type="email" id="projectEmail" name="email" required placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label for="projectPhone">Phone Number</label>
+                    <input type="tel" id="projectPhone" name="phone" placeholder="Your Phone">
+                </div>
+                <div class="form-group">
+                    <label for="projectType">Project Type *</label>
+                    <select id="projectType" name="project_type" required>
+                        <option value="">Select project type...</option>
+                        <option value="Web Application">Web Application</option>
+                        <option value="Mobile App (iOS/Android)">Mobile App (iOS/Android)</option>
+                        <option value="E-Commerce Website">E-Commerce Website</option>
+                        <option value="Custom API / Backend">Custom API / Backend</option>
+                        <option value="UI/UX Redesign">UI/UX Redesign</option>
+                        <option value="Other">Other Solutions</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectBudget">Budget Range *</label>
+                    <select id="projectBudget" name="budget" required>
+                        <option value="Under ₹10,000">Under ₹10,000</option>
+                        <option value="₹10,000 - ₹20,000">₹10,000 - ₹20,000</option>
+                        <option value="₹20,000 - ₹50,000">₹20,000 - ₹50,000</option>
+                        <option value="₹50,000+">₹50,000+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectTimeline">Timeline Preference</label>
+                    <input type="text" id="projectTimeline" name="timeline" placeholder="e.g. 2 Months, Urgent, etc.">
+                </div>
+                <div class="form-group">
+                    <label for="projectDetails">Detailed Specifications *</label>
+                    <textarea id="projectDetails" name="details" rows="4" required placeholder="Provide design links, system requirements, or scope..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Launch Project</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Join a Course Modal -->
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal">
+            <button type="button" class="modal-close" onclick="closeModal('courseModal')" aria-label="Close"><i data-lucide="x"></i></button>
+            <h2 class="modal-title">Join a Course</h2>
+            <p class="modal-subtitle">Enroll or enquire about our advanced training programs and practical bootcamps.</p>
+            <form id="courseForm" onsubmit="submitForm(event, '/api/course', 'courseForm', 'courseModal')">
+                <div class="form-group">
+                    <label for="courseStudentName">Full Name *</label>
+                    <input type="text" id="courseStudentName" name="name" required placeholder="Student Name">
+                </div>
+                <div class="form-group">
+                    <label for="courseEmail">Email Address *</label>
+                    <input type="email" id="courseEmail" name="email" required placeholder="Student Email">
+                </div>
+                <div class="form-group">
+                    <label for="coursePhone">Phone Number *</label>
+                    <input type="tel" id="coursePhone" name="phone" required placeholder="Mobile / WhatsApp Number">
+                </div>
+                <div class="form-group">
+                    <label for="courseSelect">Select Course *</label>
+                    <select id="courseSelect" name="course_name" required>
+                        <option value="">Select a course...</option>
+                        <option value="Full Stack Web Development">Full Stack Web Development</option>
+                        <option value="Full Stack App Development">Full Stack App Development</option>
+                        <option value="UI/UX Design">UI/UX Design</option>
+                        <option value="Machine Learning">Machine Learning</option>
+                        <option value="Deep Learning &amp; Gen AI">Deep Learning &amp; Gen AI</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="courseBatch">Batch Preference *</label>
+                    <select id="courseBatch" name="batch_preference" required>
+                        <option value="Weekday Online">Weekday (Online)</option>
+                        <option value="Weekend Online">Weekend (Online)</option>
+                        <option value="Weekday Classroom (Offline)">Weekday Classroom (Offline)</option>
+                        <option value="Weekend Classroom (Offline)">Weekend Classroom (Offline)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="courseMsg">Additional Inquiry details</label>
+                    <textarea id="courseMsg" name="message" rows="3" placeholder="Any background coding knowledge? Message here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Submit Enrollment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal">
+            <button type="button" class="modal-close" onclick="closeModal('contactModal')" aria-label="Close"><i data-lucide="x"></i></button>
+            <h2 class="modal-title">Contact Us</h2>
+            <p class="modal-subtitle">Got questions? Send us a message and our support team will respond quickly.</p>
+            <form id="contactForm" onsubmit="submitForm(event, '/api/contact', 'contactForm', 'contactModal')">
+                <div class="form-group">
+                    <label for="contactName">Full Name *</label>
+                    <input type="text" id="contactName" name="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email Address *</label>
+                    <input type="email" id="contactEmail" name="email" required placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone">Phone Number</label>
+                    <input type="tel" id="contactPhone" name="phone" placeholder="Your Phone (optional)">
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message *</label>
+                    <textarea id="contactMessage" name="message" rows="4" required placeholder="Type your query here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- JS Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

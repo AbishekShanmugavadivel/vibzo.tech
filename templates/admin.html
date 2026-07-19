@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibzo Technologies | Admin Dashboard</title>
+    <link rel="icon"  href="images/logo.png">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #060813;
+            --bg-secondary: #0b0f24;
+            --bg-card: rgba(11, 15, 36, 0.7);
+            --border-color: rgba(255, 255, 255, 0.07);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a5c4;
+            --text-muted: #6b7294;
+            --color-orange: #ff9f1c;
+            --color-blue: #00b4d8;
+            --color-purple: #9d4edd;
+            --color-pink: #ff007f;
+            --color-green: #06d6a0;
+            --font-primary: 'Inter', sans-serif;
+            --font-display: 'Outfit', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-v {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-orange) 0%, #ff4b1f 100%);
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.55rem;
+            letter-spacing: 4px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: block;
+        }
+
+        .dashboard-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .dashboard-title i {
+            color: var(--color-orange);
+        }
+
+        /* Stats Cards Summary */
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .summary-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .summary-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .summary-icon.quotes { background: rgba(157, 78, 221, 0.1); color: var(--color-purple); }
+        .summary-icon.projects { background: rgba(0, 180, 216, 0.1); color: var(--color-blue); }
+        .summary-icon.courses { background: rgba(6, 214, 160, 0.1); color: var(--color-green); }
+        .summary-icon.contacts { background: rgba(255, 0, 127, 0.1); color: var(--color-pink); }
+
+        .summary-data h3 {
+            font-size: 1.8rem;
+            font-family: var(--font-display);
+            line-height: 1.1;
+        }
+
+        .summary-data p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tabs Interface */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            border: none;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .tab-btn.active {
+            color: #060813;
+            background: var(--color-orange);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Table Design */
+        .table-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow-x: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: rgba(255,255,255,0.02);
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-display);
+        }
+
+        td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255,255,255,0.01);
+            color: var(--text-primary);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .tag-service { background: rgba(157, 78, 221, 0.15); color: #c084fc; }
+        .tag-project { background: rgba(0, 180, 216, 0.15); color: #67e8f9; }
+        .tag-course { background: rgba(6, 214, 160, 0.15); color: #6ee7b7; }
+
+        .empty-state {
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .empty-state i {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 992px) {
+            .stats-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-summary {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .tabs {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Admin Header -->
+    <header class="header">
+        <a href="/" class="logo">
+            <span class="logo-v">V</span>
+            <div>
+                <span class="logo-title">VIBZO</span>
+                <span class="logo-subtitle">TECHNOLOGIES</span>
+            </div>
+        </a>
+        <div class="dashboard-title">
+            <i data-lucide="layout-dashboard"></i>
+            <span>Control Panel Dashboard</span>
+        </div>
+    </header>
+
+    <!-- Stats Summary Cards -->
+    <section class="stats-summary">
+        <div class="summary-card">
+            <div class="summary-icon quotes">
+                <i data-lucide="file-text"></i>
+            </div>
+            <div class="summary-data">
+                <h3>{{ quotes|length }}</h3>
+                <p>Quote Requests</p>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-icon projects">
+                <i data-lucide="rocket"></i>
+            </div>
+            <div class="summary-data">
+                <h3>{{ projects|length }}</h3>
+                <p>Projects Launched</p>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-icon courses">
+                <i data-lucide="graduation-cap"></i>
+            </div>
+            <div class="summary-data">
+                <h3>{{ courses|length }}</h3>
+                <p>Course Enrollments</p>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-icon contacts">
+                <i data-lucide="mail"></i>
+            </div>
+            <div class="summary-data">
+                <h3>{{ contacts|length }}</h3>
+                <p>Contact Enquiries</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabs for Switching Content -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(event, 'tabQuotes')">
+            <i data-lucide="file-text"></i> Quotes ({{ quotes|length }})
+        </button>
+        <button class="tab-btn" onclick="switchTab(event, 'tabProjects')">
+            <i data-lucide="rocket"></i> Projects ({{ projects|length }})
+        </button>
+        <button class="tab-btn" onclick="switchTab(event, 'tabCourses')">
+            <i data-lucide="graduation-cap"></i> Courses ({{ courses|length }})
+        </button>
+        <button class="tab-btn" onclick="switchTab(event, 'tabContacts')">
+            <i data-lucide="mail"></i> Contact Messages ({{ contacts|length }})
+        </button>
+    </div>
+
+    <!-- ==================== TAB CONTENT: QUOTES ==================== -->
+    <div id="tabQuotes" class="tab-content active">
+        <div class="table-container">
+            {% if quotes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Contact Details</th>
+                        <th>Requested Service</th>
+                        <th>Budget</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for q in quotes %}
+                    <tr>
+                        <td>{{ q.created_at }}</td>
+                        <td style="font-weight: 600; color: #fff;">{{ q.name }}</td>
+                        <td>
+                            <div>{{ q.email }}</div>
+                            <div style="font-size: 0.8rem; margin-top: 4px;">{{ q.phone or '-' }}</div>
+                        </td>
+                        <td><span class="tag tag-service">{{ q.service }}</span></td>
+                        <td style="color: var(--color-orange); font-weight: 500;">{{ q.budget or '-' }}</td>
+                        <td style="max-width: 350px;">{{ q.message or '-' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty-state">
+                <i data-lucide="folder-open"></i>
+                <p>No quote requests received yet.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ==================== TAB CONTENT: PROJECTS ==================== -->
+    <div id="tabProjects" class="tab-content">
+        <div class="table-container">
+            {% if projects %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Client</th>
+                        <th>Contact</th>
+                        <th>Project Category</th>
+                        <th>Budget & Timeline</th>
+                        <th>Requirements Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in projects %}
+                    <tr>
+                        <td>{{ p.created_at }}</td>
+                        <td style="font-weight: 600; color: #fff;">{{ p.name }}</td>
+                        <td>
+                            <div>{{ p.email }}</div>
+                            <div style="font-size: 0.8rem; margin-top: 4px;">{{ p.phone or '-' }}</div>
+                        </td>
+                        <td><span class="tag tag-project">{{ p.project_type }}</span></td>
+                        <td>
+                            <div style="color: var(--color-orange); font-weight: 500;">Budget: {{ p.budget }}</div>
+                            <div style="font-size: 0.8rem; margin-top: 4px; color: var(--color-blue)">Timeframe: {{ p.timeline or '-' }}</div>
+                        </td>
+                        <td style="max-width: 400px;">{{ p.details }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty-state">
+                <i data-lucide="rocket"></i>
+                <p>No projects started yet.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ==================== TAB CONTENT: COURSES ==================== -->
+    <div id="tabCourses" class="tab-content">
+        <div class="table-container">
+            {% if courses %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Student Name</th>
+                        <th>Contact</th>
+                        <th>Course Selected</th>
+                        <th>Batch Preference</th>
+                        <th>Message / Query</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in courses %}
+                    <tr>
+                        <td>{{ c.created_at }}</td>
+                        <td style="font-weight: 600; color: #fff;">{{ c.name }}</td>
+                        <td>
+                            <div>{{ c.email }}</div>
+                            <div style="font-size: 0.8rem; margin-top: 4px;">{{ c.phone or '-' }}</div>
+                        </td>
+                        <td><span class="tag tag-course">{{ c.course_name }}</span></td>
+                        <td style="color: var(--color-yellow)">{{ c.batch_preference }}</td>
+                        <td style="max-width: 350px;">{{ c.message or '-' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty-state">
+                <i data-lucide="graduation-cap"></i>
+                <p>No student enrollments yet.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ==================== TAB CONTENT: CONTACTS ==================== -->
+    <div id="tabContacts" class="tab-content">
+        <div class="table-container">
+            {% if contacts %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Sender</th>
+                        <th>Contact</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in contacts %}
+                    <tr>
+                        <td>{{ c.created_at }}</td>
+                        <td style="font-weight: 600; color: #fff;">{{ c.name }}</td>
+                        <td>
+                            <div>{{ c.email }}</div>
+                            <div style="font-size: 0.8rem; margin-top: 4px;">{{ c.phone or '-' }}</div>
+                        </td>
+                        <td style="max-width: 500px;">{{ c.message }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty-state">
+                <i data-lucide="mail"></i>
+                <p>No contact inquiries received yet.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Init Lucide icons
+        lucide.createIcons();
+
+        // Switch Tabs Function
+        function switchTab(event, tabId) {
+            // Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active state from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab content & button active state
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
